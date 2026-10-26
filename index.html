@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Отжимания</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <!-- iOS Web App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Отжимания">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0a84ff">
+
+  <!-- Apple Touch Icon (Встроенная SVG-иконка через Data URI) -->
+  <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%230A84FF'/%3E%3Cstop offset='100%25' stop-color='%230058C6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='180' height='180' rx='40' fill='url(%23g)'/%3E%3Ccircle cx='90' cy='52' r='18' fill='%23ffffff'/%3E%3Cpath d='M42 125 L75 92 L105 106 L138 78' fill='none' stroke='%23ffffff' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M50 142 L130 142' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+
+  <!-- Web App Manifest (Data URI для автономной установки) -->
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%D0%A2%D1%80%D0%B5%D0%BA%D0%B5%D1%80%20%D0%BE%D1%82%D0%B6%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D0%B9%22%2C%22short_name%22%3A%22%D0%9E%D1%82%D0%B6%D0%B8%D0%BC%D0%B0%D0%BD%D0%B8%D1%8F%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23000000%22%2C%22theme_color%22%3A%22%230a84ff%22%7D">
+
+  <style>
+    :root {
+      --bg-color: #F2F2F7;
+      --card-bg: #FFFFFF;
+      --card-subtle: #F8F9FA;
+      --text-main: #000000;
+      --text-secondary: #8E8E93;
+      --text-muted: #C7C7CC;
+      --accent-color: #007AFF;
+      --accent-gradient: linear-gradient(135deg, #007AFF, #5856D6);
+      --success-color: #34C759;
+      --success-gradient: linear-gradient(135deg, #34C759, #30B0C7);
+      --danger-color: #FF3B30;
+      --ring-bg: #E5E5EA;
+      --ring-progress: #007AFF;
+      --border-color: rgba(60, 60, 67, 0.12);
+      --btn-bg: #FFFFFF;
+      --btn-active: #E5E5EA;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+    }
+
+    [data-theme="dark"] {
+      --bg-color: #000000;
+      --card-bg: #1C1C1E;
+      --card-subtle: #2C2C2E;
+      --text-main: #FFFFFF;
+      --text-secondary: #98989D;
+      --text-muted: #48484A;
+      --accent-color: #0A84FF;
+      --accent-gradient: linear-gradient(135deg, #0A84FF, #5E5CE6);
+      --success-color: #30D158;
+      --success-gradient: linear-gradient(135deg, #30D158, #40C8E0);
+      --danger-color: #FF453A;
+      --ring-bg: #2C2C2E;
+      --ring-progress: #0A84FF;
+      --border-color: rgba(255, 255, 255, 0.12);
+      --btn-bg: #2C2C2E;
+      --btn-active: #3A3A3C;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg-color: #000000;
+        --card-bg: #1C1C1E;
+        --card-subtle: #2C2C2E;
+        --text-main: #FFFFFF;
+        --text-secondary: #98989D;
+        --text-muted: #48484A;
+        --accent-color: #0A84FF;
+        --accent-gradient: linear-gradient(135deg, #0A84FF, #5E5CE6);
+        --success-color: #30D158;
+        --success-gradient: linear-gradient(135deg, #30D158, #40C8E0);
+        --danger-color: #FF453A;
+        --ring-bg: #2C2C2E;
+        --ring-progress: #0A84FF;
+        --border-color: rgba(255, 255, 255, 0.12);
+        --btn-bg: #2C2C2E;
+        --btn-active: #3A3A3C;
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      min-height: 100vh;
+      min-height: -webkit-fill-available;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      touch-action: manipulation;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 440px;
+      min-height: 100vh;
+      padding: calc(env(safe-area-inset-top, 20px) + 12px) 20px calc(env(safe-area-inset-bottom, 20px) + 24px) 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Верхний бар */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 4px 0 4px;
+    }
+
+    .header-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-date {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-secondary);
+    }
+
+    .header-app-name {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+
+    .theme-toggle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-main);
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.15s ease, background-color 0.2s;
+    }
+
+    .theme-toggle-btn:active {
+      transform: scale(0.92);
+      background: var(--btn-active);
+    }
+
+    /* Карточка с кольцом активности */
+    .hero-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      border: 1px solid var(--border-color);
+      transition: all 0.3s ease;
+    }
+
+    .ring-wrapper {
+      position: relative;
+      width: 210px;
+      height: 210px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 8px;
+    }
+
+    .progress-svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+
+    .ring-circle-bg {
+      fill: none;
+      stroke: var(--ring-bg);
+      stroke-width: 15;
+    }
+
+    .ring-circle-val {
+      fill: none;
+      stroke: var(--accent-color);
+      stroke-width: 15;
+      stroke-linecap: round;
+      stroke-dasharray: 565.48;
+      stroke-dashoffset: 565.48;
+      transition: stroke-dashoffset 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), stroke 0.3s;
+    }
+
+    .ring-center-content {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .ring-count {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .ring-unit {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .goal-badge {
+      margin-top: 10px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: var(--card-subtle);
+      border: 1px solid var(--border-color);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-color);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+
+    .goal-badge:active {
+      transform: scale(0.95);
+    }
+
+    .goal-badge svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .status-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-top: 10px;
+      font-weight: 500;
+    }
+
+    /* Кнопки быстрого ввода */
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--text-secondary);
+      margin-left: 6px;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .btn-push {
+      background: var(--card-bg);
+      color: var(--accent-color);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px 8px;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: transform 0.12s ease, background 0.12s;
+    }
+
+    .btn-push span.sub {
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .btn-push:active {
+      transform: scale(0.93);
+      background: var(--btn-active);
+    }
+
+    .btn-custom {
+      color: var(--text-main);
+      font-size: 16px;
+    }
+
+    .btn-custom svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+      margin-bottom: 3px;
+    }
+
+    /* Кнопка Undo */
+    .undo-bar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 0 4px;
+    }
+
+    .undo-btn {
+      background: none;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .undo-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .undo-btn:not(:disabled):active {
+      color: var(--accent-color);
+      background: var(--card-subtle);
+    }
+
+    /* Вкладки: Сегодня и История */
+    .tab-bar {
+      display: flex;
+      background: var(--card-subtle);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      gap: 4px;
+    }
+
+    .tab-button {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-button.active {
+      background: var(--card-bg);
+      color: var(--text-main);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Списки логов и истории */
+    .list-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      max-height: 260px;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .log-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 15px;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .log-item:last-child {
+      border-bottom: none;
+    }
+
+    .log-time {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      min-width: 50px;
+    }
+
+    .log-count {
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .log-delete {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: color 0.15s;
+    }
+
+    .log-delete:active {
+      color: var(--danger-color);
+      background: rgba(255, 59, 48, 0.1);
+    }
+
+    .empty-state {
+      padding: 32px 16px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .empty-state svg {
+      width: 32px;
+      height: 32px;
+      stroke: var(--text-muted);
+    }
+
+    /* Элемент истории */
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-date {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .history-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .history-count {
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .history-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-success {
+      background: rgba(52, 199, 89, 0.15);
+      color: var(--success-color);
+    }
+
+    .badge-missed {
+      background: var(--card-subtle);
+      color: var(--text-secondary);
+    }
+
+    /* Модальное окно (Custom Count / Изменение цели) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 24px;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 320px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border: 1px solid var(--border-color);
+      transform: scale(0.95);
+      animation: popIn 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) forwards;
+    }
+
+    @keyframes popIn {
+      to { transform: scale(1); }
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .modal-input {
+      font-size: 28px;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px;
+      border-radius: 12px;
+      border: 2px solid var(--border-color);
+      background: var(--card-subtle);
+      color: var(--text-main);
+      outline: none;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .modal-input:focus {
+      border-color: var(--accent-color);
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-btn {
+      flex: 1;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.1s;
+    }
+
+    .modal-btn:active {
+      transform: scale(0.97);
+    }
+
+    .modal-btn.cancel {
+      background: var(--card-subtle);
+      color: var(--text-main);
+    }
+
+    .modal-btn.confirm {
+      background: var(--accent-color);
+      color: #ffffff;
+    }
+
+    /* Анимация конфетти / празднования цели */
+    .celebrate {
+      animation: pulseSuccess 0.6s ease;
+    }
+
+    @keyframes pulseSuccess {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Шапка -->
+    <header class="header">
+      <div class="header-title-group">
+        <span class="header-date" id="currentDateDisplay">Сегодня</span>
+        <h1 class="header-app-name">Отжимания</h1>
+      </div>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Сменить тему" title="Сменить тему">
+        <svg id="themeIconSun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg id="themeIconMoon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Главный круг прогресса -->
+    <div class="hero-card" id="heroCard">
+      <div class="ring-wrapper">
+        <svg class="progress-svg" viewBox="0 0 200 200">
+          <circle class="ring-circle-bg" cx="100" cy="100" r="90"></circle>
+          <circle class="ring-circle-val" id="progressCircle" cx="100" cy="100" r="90"></circle>
+        </svg>
+        <div class="ring-center-content">
+          <span class="ring-count" id="todayTotal">0</span>
+          <span class="ring-unit">отжиманий</span>
+        </div>
+      </div>
+
+      <!-- Бейдж цели с возможностью редактирования -->
+      <div class="goal-badge" id="editGoalBtn" title="Нажмите, чтобы изменить цель">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+        </svg>
+        <span>Цель: <strong id="dailyGoalDisplay">100</strong></span>
+      </div>
+
+      <div class="status-text" id="statusMessage">Осталось 100</div>
+    </div>
+
+    <!-- Быстрый ввод подходов -->
+    <div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 8px;">
+        <span class="section-title">Добавить подход</span>
+        <button class="undo-btn" id="undoBtn" disabled title="Отменить последнее добавление">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10"></polyline>
+            <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+          </svg>
+          Отмена
+        </button>
+      </div>
+
+      <div class="button-grid">
+        <button class="btn-push" data-add="5">+5<span class="sub">раз</span></button>
+        <button class="btn-push" data-add="10">+10<span class="sub">раз</span></button>
+        <button class="btn-push" data-add="15">+15<span class="sub">раз</span></button>
+        <button class="btn-push" data-add="20">+20<span class="sub">раз</span></button>
+        <button class="btn-push" data-add="25">+25<span class="sub">раз</span></button>
+        <button class="btn-push btn-custom" id="customInputBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Свой ввод</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Вкладки: Сегодня / История прошлых дней -->
+    <div style="display: flex; flex-direction: column; gap: 8px; flex: 1;">
+      <div class="tab-bar">
+        <button class="tab-button active" id="tabTodayBtn">Сегодня (<span id="todayCountBadge">0</span>)</button>
+        <button class="tab-button" id="tabHistoryBtn">История дней</button>
+      </div>
+
+      <!-- Список за сегодня -->
+      <div class="list-card" id="todayLogContainer">
+        <div id="todayList"></div>
+      </div>
+
+      <!-- Список истории по дням -->
+      <div class="list-card" id="historyLogContainer" style="display: none;">
+        <div id="historyList"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Диалоговое окно (Модалка) -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+      <h3 class="modal-title" id="modalTitle">Свой ввод</h3>
+      <input type="number" id="modalInput" class="modal-input" pattern="[0-9]*" inputmode="numeric" min="1" max="1000" placeholder="0">
+      <div class="modal-buttons">
+        <button class="modal-btn cancel" id="modalCancelBtn">Отмена</button>
+        <button class="modal-btn confirm" id="modalConfirmBtn">Готово</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // --- КЛЮЧИ LOCALSTORAGE ---
+      const STORAGE_KEYS = {
+        GOAL: 'pushups_goal',
+        TODAY_LOG: 'pushups_today_log',
+        TODAY_DATE: 'pushups_today_date',
+        HISTORY: 'pushups_history_days',
+        THEME: 'pushups_theme'
+      };
+
+      // --- СОСТОЯНИЕ ПРИЛОЖЕНИЯ ---
+      let dailyGoal = parseInt(localStorage.getItem(STORAGE_KEYS.GOAL), 10) || 100;
+      let todayLogs = [];
+      let historyDays = {}; // формат: { "YYYY-MM-DD": { total: 100, goal: 100, goalReached: true } }
+      let activeTab = 'today';
+      let modalAction = null; // 'custom_add' | 'edit_goal'
+
+      // Форматирование даты YYYY-MM-DD для ключей
+      function getTodayString() {
+        const d = new Date();
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+      // Форматирование текущей даты в шапку (например, "Пн, 26 октября")
+      function formatHeaderDate() {
+        const d = new Date();
+        const options = { weekday: 'short', day: 'numeric', month: 'long' };
+        return d.toLocaleDateString('ru-RU', options);
+      }
+
+      // Тактильная отдача (iOS Taptic Engine при поддержке)
+      function hapticFeedback(pattern = [15]) {
+        if (window.navigator && window.navigator.vibrate) {
+          try {
+            window.navigator.vibrate(pattern);
+          } catch (e) {
+            // Игнорируем ограничения браузера
+          }
+        }
+      }
+
+      // --- ИНИЦИАЛИЗАЦИЯ И СБРОС СМЕНЫ ДНЯ ---
+      function checkAndRotateDay() {
+        const storedDate = localStorage.getItem(STORAGE_KEYS.TODAY_DATE);
+        const currentDate = getTodayString();
+
+        try {
+          historyDays = JSON.parse(localStorage.getItem(STORAGE_KEYS.HISTORY)) || {};
+        } catch (e) {
+          historyDays = {};
+        }
+
+        if (storedDate && storedDate !== currentDate) {
+          // Наступил новый день! Сохраняем вчерашние результаты в историю
+          let prevLogs = [];
+          try {
+            prevLogs = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODAY_LOG)) || [];
+          } catch (e) {
+            prevLogs = [];
+          }
+
+          const prevTotal = prevLogs.reduce((sum, item) => sum + item.count, 0);
+          if (prevTotal > 0 || prevLogs.length > 0) {
+            historyDays[storedDate] = {
+              total: prevTotal,
+              goal: dailyGoal,
+              goalReached: prevTotal >= dailyGoal
+            };
+            localStorage.setItem(STORAGE_KEYS.HISTORY, JSON.stringify(historyDays));
+          }
+
+          // Сбрасываем текущий день
+          todayLogs = [];
+          localStorage.setItem(STORAGE_KEYS.TODAY_LOG, JSON.stringify(todayLogs));
+          localStorage.setItem(STORAGE_KEYS.TODAY_DATE, currentDate);
+        } else if (!storedDate) {
+          localStorage.setItem(STORAGE_KEYS.TODAY_DATE, currentDate);
+          try {
+            todayLogs = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODAY_LOG)) || [];
+          } catch (e) {
+            todayLogs = [];
+          }
+        } else {
+          try {
+            todayLogs = JSON.parse(localStorage.getItem(STORAGE_KEYS.TODAY_LOG)) || [];
+          } catch (e) {
+            todayLogs = [];
+          }
+        }
+      }
+
+      // Подсчет суммы за сегодня
+      function getTodayTotal() {
+        return todayLogs.reduce((acc, cur) => acc + cur.count, 0);
+      }
+
+      // --- DOM ЭЛЕМЕНТЫ ---
+      const currentDateDisplay = document.getElementById('currentDateDisplay');
+      const todayTotalEl = document.getElementById('todayTotal');
+      const progressCircle = document.getElementById('progressCircle');
+      const dailyGoalDisplay = document.getElementById('dailyGoalDisplay');
+      const statusMessage = document.getElementById('statusMessage');
+      const undoBtn = document.getElementById('undoBtn');
+      const todayList = document.getElementById('todayList');
+      const historyList = document.getElementById('historyList');
+      const todayCountBadge = document.getElementById('todayCountBadge');
+      const tabTodayBtn = document.getElementById('tabTodayBtn');
+      const tabHistoryBtn = document.getElementById('tabHistoryBtn');
+      const todayLogContainer = document.getElementById('todayLogContainer');
+      const historyLogContainer = document.getElementById('historyLogContainer');
+      const heroCard = document.getElementById('heroCard');
+
+      // Тема
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeIconSun = document.getElementById('themeIconSun');
+      const themeIconMoon = document.getElementById('themeIconMoon');
+
+      // Модальное окно
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalInput = document.getElementById('modalInput');
+      const modalCancelBtn = document.getElementById('modalCancelBtn');
+      const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+      const editGoalBtn = document.getElementById('editGoalBtn');
+      const customInputBtn = document.getElementById('customInputBtn');
+
+      // --- УПРАВЛЕНИЕ ТЕМОЙ ---
+      function initTheme() {
+        const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME);
+        if (savedTheme) {
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+        updateThemeIcons();
+      }
+
+      function updateThemeIcons() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark' ||
+          (!document.documentElement.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        
+        if (isDark) {
+          themeIconSun.style.display = 'block';
+          themeIconMoon.style.display = 'none';
+        } else {
+          themeIconSun.style.display = 'none';
+          themeIconMoon.style.display = 'block';
+        }
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        hapticFeedback(10);
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        let nextTheme;
+        if (currentTheme === 'dark') {
+          nextTheme = 'light';
+        } else if (currentTheme === 'light') {
+          nextTheme = 'dark';
+        } else {
+          // Если стояло системное значение
+          const isSystemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          nextTheme = isSystemDark ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', nextTheme);
+        localStorage.setItem(STORAGE_KEYS.THEME, nextTheme);
+        updateThemeIcons();
+      });
+
+      // --- ОБНОВЛЕНИЕ ИНТЕРФЕЙСА ---
+      const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * 90; // r=90 => ~565.48
+
+      function render() {
+        const total = getTodayTotal();
+        todayTotalEl.textContent = total;
+        dailyGoalDisplay.textContent = dailyGoal;
+        todayCountBadge.textContent = todayLogs.length;
+
+        // Расчет прогресса кольца
+        const progress = Math.min(total / dailyGoal, 1);
+        const offset = CIRCLE_CIRCUMFERENCE - (progress * CIRCLE_CIRCUMFERENCE);
+        progressCircle.style.strokeDashoffset = offset;
+
+        // Цвет кольца при выполнении цели
+        if (total >= dailyGoal) {
+          progressCircle.style.stroke = 'var(--success-color)';
+          const diff = total - dailyGoal;
+          statusMessage.innerHTML = `<span style="color:var(--success-color); font-weight:700;">Цель выполнена! 🎉</span>` + 
+            (diff > 0 ? ` (+${diff})` : '');
+        } else {
+          progressCircle.style.stroke = 'var(--accent-color)';
+          const remaining = dailyGoal - total;
+          statusMessage.textContent = `Осталось сделать: ${remaining}`;
+        }
+
+        // Состояние кнопки отмены
+        undoBtn.disabled = todayLogs.length === 0;
+
+        // Отрисовка списка за сегодня
+        renderTodayList();
+
+        // Отрисовка истории
+        renderHistoryList();
+      }
+
+      function renderTodayList() {
+        if (todayLogs.length === 0) {
+          todayList.innerHTML = `
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 12h8"></path>
+              </svg>
+              <span>Подходов сегодня еще нет.<br>Нажмите любую кнопку выше, чтобы начать!</span>
+            </div>
+          `;
+          return;
+        }
+
+        // Сортировка: новые сверху
+        const itemsHtml = todayLogs.slice().reverse().map((item) => {
+          return `
+            <div class="log-item">
+              <span class="log-time">${item.time}</span>
+              <span class="log-count">+${item.count} отжиманий</span>
+              <button class="log-delete" data-id="${item.id}" aria-label="Удалить запись" title="Удалить">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
+            </div>
+          `;
+        }).join('');
+
+        todayList.innerHTML = itemsHtml;
+
+        // Вешаем слушатели на кнопки удаления
+        todayList.querySelectorAll('.log-delete').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const id = e.currentTarget.getAttribute('data-id');
+            deleteLogItem(id);
+          });
+        });
+      }
+
+      function renderHistoryList() {
+        const daysKeys = Object.keys(historyDays).sort().reverse();
+
+        if (daysKeys.length === 0) {
+          historyList.innerHTML = `
+            <div class="empty-state">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>История прошлых дней пока пуста.<br>Здесь будут сохраняться результаты по дням.</span>
+            </div>
+          `;
+          return;
+        }
+
+        const itemsHtml = daysKeys.map(dateKey => {
+          const item = historyDays[dateKey];
+          const [y, m, d] = dateKey.split('-');
+          const dateObj = new Date(y, m - 1, d);
+          const formattedDate = dateObj.toLocaleDateString('ru-RU', {
+            day: 'numeric',
+            month: 'short',
+            weekday: 'short'
+          });
+
+          const isAchieved = item.total >= (item.goal || 100);
+          const badgeClass = isAchieved ? 'badge-success' : 'badge-missed';
+          const badgeText = isAchieved ? 'Цель выполнена' : `${item.total}/${item.goal || 100}`;
+
+          return `
+            <div class="history-item">
+              <div>
+                <div class="history-date">${formattedDate}</div>
+                <div style="font-size:12px; color:var(--text-secondary); margin-top:2px;">Цель: ${item.goal || 100}</div>
+              </div>
+              <div class="history-right">
+                <span class="history-count">${item.total}</span>
+                <span class="history-badge ${badgeClass}">${badgeText}</span>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        historyList.innerHTML = itemsHtml;
+      }
+
+      // --- ДОБАВЛЕНИЕ ПОДХОДОВ ---
+      function addPushups(amount) {
+        if (!amount || isNaN(amount) || amount <= 0) return;
+
+        hapticFeedback([20]);
+
+        const prevTotal = getTodayTotal();
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+
+        const newEntry = {
+          id: Date.now().toString() + Math.random().toString(36).substr(2, 4),
+          count: amount,
+          time: timeString,
+          timestamp: Date.now()
+        };
+
+        todayLogs.push(newEntry);
+        localStorage.setItem(STORAGE_KEYS.TODAY_LOG, JSON.stringify(todayLogs));
+        render();
+
+        const currentTotal = getTodayTotal();
+        // Если только что достигли цели — красивая вибрация и анимация
+        if (prevTotal < dailyGoal && currentTotal >= dailyGoal) {
+          hapticFeedback([40, 60, 40]);
+          heroCard.classList.add('celebrate');
+          setTimeout(() => heroCard.classList.remove('celebrate'), 700);
+        }
+      }
+
+      // Отмена последнего действия
+      function undoLast() {
+        if (todayLogs.length === 0) return;
+        hapticFeedback(15);
+        todayLogs.pop();
+        localStorage.setItem(STORAGE_KEYS.TODAY_LOG, JSON.stringify(todayLogs));
+        render();
+      }
+
+      // Удаление конкретной записи
+      function deleteLogItem(id) {
+        hapticFeedback(15);
+        todayLogs = todayLogs.filter(item => item.id !== id);
+        localStorage.setItem(STORAGE_KEYS.TODAY_LOG, JSON.stringify(todayLogs));
+        render();
+      }
+
+      // --- ОБРАБОТЧИКИ НАЖАТИЙ КНОПОК БЫСТРОГО ВВОДА ---
+      document.querySelectorAll('[data-add]').forEach(button => {
+        button.addEventListener('click', () => {
+          const count = parseInt(button.getAttribute('data-add'), 10);
+          addPushups(count);
+        });
+      });
+
+      undoBtn.addEventListener('click', undoLast);
+
+      // --- ПЕРЕКЛЮЧЕНИЕ ВКЛАДОК ---
+      tabTodayBtn.addEventListener('click', () => {
+        activeTab = 'today';
+        tabTodayBtn.classList.add('active');
+        tabHistoryBtn.classList.remove('active');
+        todayLogContainer.style.display = 'block';
+        historyLogContainer.style.display = 'none';
+        hapticFeedback(8);
+      });
+
+      tabHistoryBtn.addEventListener('click', () => {
+        activeTab = 'history';
+        tabHistoryBtn.classList.add('active');
+        tabTodayBtn.classList.remove('active');
+        todayLogContainer.style.display = 'none';
+        historyLogContainer.style.display = 'block';
+        hapticFeedback(8);
+      });
+
+      // --- МОДАЛЬНОЕ ОКНО (СВОЙ ВВОД И РЕДАКТИРОВАНИЕ ЦЕЛИ) ---
+      function openModal(type) {
+        modalAction = type;
+        modalInput.value = '';
+        if (type === 'custom_add') {
+          modalTitle.textContent = 'Количество отжиманий';
+          modalInput.placeholder = 'Например, 35';
+        } else if (type === 'edit_goal') {
+          modalTitle.textContent = 'Новая цель на день';
+          modalInput.value = dailyGoal;
+          modalInput.placeholder = '100';
+        }
+        modalOverlay.style.display = 'flex';
+        setTimeout(() => modalInput.focus(), 50);
+      }
+
+      function closeModal() {
+        modalOverlay.style.display = 'none';
+        modalInput.blur();
+        modalAction = null;
+      }
+
+      function handleModalConfirm() {
+        const value = parseInt(modalInput.value, 10);
+        if (modalAction === 'custom_add') {
+          if (value > 0) {
+            addPushups(value);
+            closeModal();
+          } else {
+            modalInput.focus();
+          }
+        } else if (modalAction === 'edit_goal') {
+          if (value > 0) {
+            dailyGoal = value;
+            localStorage.setItem(STORAGE_KEYS.GOAL, dailyGoal.toString());
+            hapticFeedback(20);
+            render();
+            closeModal();
+          } else {
+            modalInput.focus();
+          }
+        }
+      }
+
+      customInputBtn.addEventListener('click', () => openModal('custom_add'));
+      editGoalBtn.addEventListener('click', () => openModal('edit_goal'));
+      modalCancelBtn.addEventListener('click', closeModal);
+      modalConfirmBtn.addEventListener('click', handleModalConfirm);
+
+      modalInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          handleModalConfirm();
+        }
+      });
+
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) {
+          closeModal();
+        }
+      });
+
+      // Слушатель смены дня при возвращении приложения из фона (visibilitychange)
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+          checkAndRotateDay();
+          currentDateDisplay.textContent = formatHeaderDate();
+          render();
+        }
+      });
+
+      // Запуск
+      currentDateDisplay.textContent = formatHeaderDate();
+      initTheme();
+      checkAndRotateDay();
+      render();
+
+    })();
+  </script>
+</body>
+</html>
